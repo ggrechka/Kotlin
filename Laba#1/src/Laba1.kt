@@ -81,6 +81,83 @@ import kotlin.math.min
 
 //7 задание
 
+//fun sumDigit(a: Int): Int {
+//    var sum = 0
+//    var aCopy = a
+//    while (aCopy != 0) {
+//        sum += (aCopy % 10)
+//        aCopy /= 10
+//    }
+//
+//    return sum
+//}
+//
+//fun searchMax(a: Int) :Int {
+//    var aCopy: Int = a
+//    var max = aCopy % 10
+//    while (aCopy != 0) {
+//        if (aCopy % 10 > max)
+//            max = aCopy % 10
+//        aCopy /= 10
+//    }
+//    return max
+//}
+//
+//fun searchMin(a: Int) :Int {
+//    var aCopy: Int = a
+//    var min = aCopy % 10
+//    while (aCopy != 0) {
+//        if (aCopy % 10 < min)
+//            min = aCopy % 10
+//        aCopy /= 10
+//    }
+//    return min
+//}
+//
+//fun searchProiz(a: Int) :Int {
+//    var aCopy: Int = a
+//    var p = 1
+//    while (aCopy != 0) {
+//        p*=aCopy%10
+//        aCopy /= 10
+//    }
+//    return p
+//}
+//
+//
+//fun main() {
+//    print("Введите число: ")
+//    val input = Scanner(System.`in`)
+//    var a = input.nextInt()
+//    println("Сумма цифр числа ${sumDigit(a)}")
+//    println("Максимальная цифра числа: ${searchMax(a)}")
+//    println("Минимальная цифра числа: ${searchMin(a)}")
+//    println("Произведение цифр числа: ${searchProiz(a)}")
+//
+//}
+
+//8 задание
+
+fun delWithout3(a: Int): Int {
+    var aCopy = a
+    var del = 1
+    for (i in 2..aCopy) {
+        if (aCopy % i == 0 && i%3!=0) del+=1
+    }
+    return del
+}
+
+fun searchMinNech(a: Int) :Int {
+    var aCopy: Int = a
+    var min = 10
+    while (aCopy != 0) {
+        if (aCopy % 10 < min && (aCopy % 10) % 2 == 1)
+            min = aCopy % 10
+        aCopy /= 10
+    }
+    return min
+}
+
 fun sumDigit(a: Int): Int {
     var sum = 0
     var aCopy = a
@@ -92,46 +169,41 @@ fun sumDigit(a: Int): Int {
     return sum
 }
 
-fun searchMax(a: Int) :Int {
-    var aCopy: Int = a
-    var max = aCopy % 10
-    while (aCopy != 0) {
-        if (aCopy % 10 > max)
-            max = aCopy % 10
-        aCopy /= 10
-    }
-    return max
-}
-
-fun searchMin(a: Int) :Int {
-    var aCopy: Int = a
-    var min = aCopy % 10
-    while (aCopy != 0) {
-        if (aCopy % 10 < min)
-            min = aCopy % 10
-        aCopy /= 10
-    }
-    return min
-}
-
 fun searchProiz(a: Int) :Int {
     var aCopy: Int = a
     var p = 1
     while (aCopy != 0) {
-        p*=aCopy%10
+        p *= aCopy % 10
         aCopy /= 10
     }
     return p
 }
 
+fun searchProst(a:Int,b:Int):Boolean{
+    for (i in 2..min(a,b))  if (a%i==0 && b%i==0) return false
+    return true
+}
+
+//18:   сумма 9, произведение 8, делители: 1,2,3,6,9,18
+fun sumDel(a: Int): Int {
+    var aCopy = a
+    var sum = 0
+    for (i in 1..aCopy) {
+        if (aCopy % i == 0 && (searchProst(i, sumDigit(a)) && !searchProst(i, searchProiz(a)))) sum += i
+    }
+    return sum
+}
 
 fun main() {
     print("Введите число: ")
     val input = Scanner(System.`in`)
     var a = input.nextInt()
-    println("Сумма цифр числа ${sumDigit(a)}")
-    println("Максимальная цифра числа: ${searchMax(a)}")
-    println("Минимальная цифра числа: ${searchMin(a)}")
-    println("Произведение цифр числа: ${searchProiz(a)}")
+    println("Количество делителей числа, не кратных трём: ${delWithout3(a)}")
+    when(searchMinNech(a)){
+        10 -> println("Число чётное, нечётных цифр нет")
+        else -> println("Минимальная нечётная цифра: ${searchMinNech(a)}")
+    }
+    println("Сумма всех делителей числа, взаимно простых с суммой\n" +
+            "цифр числа и не взаимно простых с произведением цифр числа: ${sumDel(a)}")
 
 }
