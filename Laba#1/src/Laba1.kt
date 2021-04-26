@@ -52,30 +52,86 @@ import kotlin.math.min
 
 //6 задание
 
-fun main() {
-    print("Введите число: ")
-    //1 вариант ввода - спросить
-    //var a= readLine()
-    //var s= a?.toInt()
+//fun main() {
+//    print("Введите число: ")
+//    //1 вариант ввода - спросить
+//    //var a= readLine()
+//    //var s= a?.toInt()
+//
+//    //2 вариант ввода
+//    val input = Scanner(System.`in`)
+//    var a = input.nextInt()
+//    var aCopy = a
+//    var sum = 0
+//    while (a != 0) {
+//        sum += a % 10
+//        a = a/10
+//    }
+//    println("Сумма цифр числа $sum")
+//
+//    //Методы класса Int
+//    println("Метод and: ${aCopy.and(10)}") // конъюнкция
+//    println("Метод compareTo: ${aCopy.compareTo(11)}")
+//    println("Метод dec: ${aCopy.dec()}")
+//    println("Метод div: ${aCopy.div(2.5)}")
+//    println("Метод minus:${aCopy.minus(3)}")
+//    println("Метод rangeTo: ${aCopy.rangeTo(20)}")
+//    println("Метод xor:${aCopy.xor(4)}")
+//}
 
-    //2 вариант ввода
-    val input = Scanner(System.`in`)
-    var a = input.nextInt()
-    var aCopy = a
+//7 задание
+
+fun sumDigit(a: Int): Int {
     var sum = 0
-    while (a != 0) {
-        sum += a % 10
-        a = a/10
+    var aCopy = a
+    while (aCopy != 0) {
+        sum += (aCopy % 10)
+        aCopy /= 10
     }
-    println("Сумма цифр числа $sum")
 
-    //Методы класса Int
-    println("Метод and: ${aCopy.and(10)}") // конъюнкция
-    println("Метод compareTo: ${aCopy.compareTo(11)}")
-    println("Метод dec: ${aCopy.dec()}")
-    println("Метод div: ${aCopy.div(2.5)}")
-    println("Метод minus:${aCopy.minus(3)}")
-    println("Метод rangeTo: ${aCopy.rangeTo(20)}")
-    println("Метод xor:${aCopy.xor(4)}")
+    return sum
 }
 
+fun searchMax(a: Int) :Int {
+    var aCopy: Int = a
+    var max = aCopy % 10
+    while (aCopy != 0) {
+        if (aCopy % 10 > max)
+            max = aCopy % 10
+        aCopy /= 10
+    }
+    return max
+}
+
+fun searchMin(a: Int) :Int {
+    var aCopy: Int = a
+    var min = aCopy % 10
+    while (aCopy != 0) {
+        if (aCopy % 10 < min)
+            min = aCopy % 10
+        aCopy /= 10
+    }
+    return min
+}
+
+fun searchProiz(a: Int) :Int {
+    var aCopy: Int = a
+    var p = 1
+    while (aCopy != 0) {
+        p*=aCopy%10
+        aCopy /= 10
+    }
+    return p
+}
+
+
+fun main() {
+    print("Введите число: ")
+    val input = Scanner(System.`in`)
+    var a = input.nextInt()
+    println("Сумма цифр числа ${sumDigit(a)}")
+    println("Максимальная цифра числа: ${searchMax(a)}")
+    println("Минимальная цифра числа: ${searchMin(a)}")
+    println("Произведение цифр числа: ${searchProiz(a)}")
+
+}
