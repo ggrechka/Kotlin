@@ -78,3 +78,4 @@ fun main() {
     println("Метод rangeTo: ${aCopy.rangeTo(20)}")
     println("Метод xor:${aCopy.xor(4)}")
 }
+
