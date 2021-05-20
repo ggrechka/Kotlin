@@ -151,85 +151,125 @@ import java.util.*
 
 //5 задание
 
-tailrec fun sumDigit(num: Int, inVal: Int = 0): Int = if (num != 0) {
-    sumDigit(num / 10, inVal + (num % 10))
-} else inVal
+//tailrec fun sumDigit(num: Int, inVal: Int = 0): Int = if (num != 0) {
+//    sumDigit(num / 10, inVal + (num % 10))
+//} else inVal
+//
+//tailrec fun minDigit(num: Int, inVal: Int = num % 10): Int = if (num != 0) {
+//    minDigit(num / 10, if (num % 10 < inVal) num % 10 else inVal)
+//} else inVal
+//
+//tailrec fun maxDigit(num: Int, inVal: Int = num % 10): Int = if (num != 0) {
+//    maxDigit(num / 10, if (num % 10 > inVal) num % 10 else inVal)
+//} else inVal
+//
+//tailrec fun proizDigit(num: Int, inVal: Int = 1): Int = if (num != 0) {
+//    proizDigit(num / 10, inVal * (num % 10))
+//} else inVal
+//
+//
+//
+//fun searchDigit(num: Int, func1: (number: Int) -> Boolean, func2: (number: Int) -> Int, inVal: Int = 0): Int =
+//    if (func1(num)) {
+//        func2(num)
+//    } else throw Exception()
+//
+//fun condition1(num: Int): Boolean =
+//    if (num != 0) {
+//        if (((num % 10) % 2) == 0) {
+//            condition1(num / 10)
+//        } else false
+//    } else true
+//
+//fun condition2(num: Int): Boolean =
+//    if (num != 0) {
+//        if (((num % 10) % 2) == 1) {
+//            condition2(num / 10)
+//        } else false
+//    } else true
+//
+//fun condition3(num: Int): Boolean =
+//    if (num != 0) {
+//        if (((num % 10) % 3) == 0) {
+//            condition3(num / 10)
+//        } else false
+//    } else true
+//
+//fun checkCondition(check:String,num :Int):Boolean=
+//    if (check=="1") {
+//        condition1(num)
+//    } else if (check=="2"){
+//        condition2(num)
+//    } else condition3(num)
+//
+//fun main() {
+//    print("Введите число: ")
+//    val input = Scanner(System.`in`)
+//    val a = input.nextInt()
+//
+//    println(
+//        "Выберите команду: \n" +
+//                "1.Поиск суммы цифр числа \n" +
+//                "2.Поиск минимальной цифры \n" +
+//                "3.Поиск максимальной цифры \n" +
+//                "4.Поиск произведения цифр числа"
+//    )
+//    val command=input.nextInt()
+//    println(
+//        "Выберите условие фильтрации: \n" +
+//                "1.Все цифры числа чётные \n" +
+//                "2.Все цифры числа нечётные \n" +
+//                "3.Все цифры числа кратны 3"
+//    )
+//    val condition=input.nextInt()
+//    try {
+//        when (command) {
+//            1 -> println("Сумма цифр: ${searchDigit(a,  if (condition==1) ::condition1 else if (condition==2) ::condition2 else ::condition3, ::sumDigit)}")
+//            2 -> println("Минимальная цифра: ${searchDigit(a,  if (condition==1) ::condition1 else if (condition==2) ::condition2 else ::condition3, ::minDigit)}")
+//            3 -> println("Максимальная цифра: ${searchDigit(a,  if (condition==1) ::condition1 else if (condition==2) ::condition2 else ::condition3, ::maxDigit)}")
+//            4 -> println("Произведение цифр: ${searchDigit(a,  if (condition==1) ::condition1 else if (condition==2) ::condition2 else ::condition3, ::proizDigit)}")
+//        }
+//    } catch (e: Exception) {
+//        println("Условие не пройдено")
+//    }
+//}
 
-tailrec fun minDigit(num: Int, inVal: Int = num % 10): Int = if (num != 0) {
-    minDigit(num / 10, if (num % 10 < inVal) num % 10 else inVal)
-} else inVal
-
-tailrec fun maxDigit(num: Int, inVal: Int = num % 10): Int = if (num != 0) {
-    maxDigit(num / 10, if (num % 10 > inVal) num % 10 else inVal)
-} else inVal
-
-tailrec fun proizDigit(num: Int, inVal: Int = 1): Int = if (num != 0) {
-    proizDigit(num / 10, inVal * (num % 10))
-} else inVal
+//6 задание
 
 
+// ВХОДНЫЕ ДАННЫЕ:
+// число 2468
+// Выберите команду: 3
+// Выберите условие фильтрации: 1
 
-fun searchDigit(num: Int, func1: (number: Int) -> Boolean, func2: (number: Int) -> Int, inVal: Int = 0): Int =
-    if (func1(num)) {
-        func2(num)
-    } else throw Exception()
+// В операторе "when" программа заходит в 3 альтернативу и вызывает функцию  searchDigit, которая в свою очередь
+// осуществляет выбор условия фильтрации с помощь тернарного оператора.
+// В нашем случае условие фильтрации - все цифры числа чётные.В функции condition1 идёт проверка каждой
+// цифры на чётность. В случае, если условие будет нарушено, программа выдаст исключение, которое обработается и
+// в консоль выведется "Условие на пройдено".
+// В нашей ситуации, условие не нарушается и searchDigit переводит на maxDigit, которая ищет в числе максимальную цифру
+// Результат поиска выводится на экран
 
-fun condition1(num: Int): Boolean =
-    if (num != 0) {
-        if (((num % 10) % 2) == 0) {
-            condition1(num / 10)
-        } else false
-    } else true
+// ВХОДНЫЕ ДАННЫЕ:
+// число 132
+// Выберите команду: 1
+// Выберите условие фильтрации: 2
 
-fun condition2(num: Int): Boolean =
-    if (num != 0) {
-        if (((num % 10) % 2) == 1) {
-            condition2(num / 10)
-        } else false
-    } else true
+// В операторе "when" программа заходит в 1 альтернативу и вызывает функцию  searchDigit, которая в свою очередь
+// осуществляет выбор условия фильтрации с помощь тернарного оператора.
+// В нашем случае условие фильтрации - все цифры числа нечётные.В функции condition2 идёт проверка каждой
+// цифры на чётность. В случае, если условие будет нарушено, программа выдаст исключение, которое обработается и
+// в консоль выведется "Условие на пройдено" и это как раз наша ситуация
 
-fun condition3(num: Int): Boolean =
-    if (num != 0) {
-        if (((num % 10) % 3) == 0) {
-            condition3(num / 10)
-        } else false
-    } else true
+// ВХОДНЫЕ ДАННЫЕ:
+// число 33339
+// Выберите команду: 4
+// Выберите условие фильтрации: 4
 
-fun checkCondition(check:String,num :Int):Boolean=
-    if (check=="1") {
-        condition1(num)
-    } else if (check=="2"){
-        condition2(num)
-    } else condition3(num)
-
-fun main() {
-    print("Введите число: ")
-    val input = Scanner(System.`in`)
-    val a = input.nextInt()
-
-    println(
-        "Выберите команду: \n" +
-                "1.Поиск суммы цифр числа \n" +
-                "2.Поиск минимальной цифры \n" +
-                "3.Поиск максимальной цифры \n" +
-                "4.Поиск произведения цифр числа"
-    )
-    val command=input.nextInt()
-    println(
-        "Выберите условие фильтрации: \n" +
-                "1.Все цифры числа чётные \n" +
-                "2.Все цифры числа нечётные \n" +
-                "3.Все цифры числа кратны 3"
-    )
-    val condition=input.nextInt()
-    try {
-        when (command) {
-            1 -> println("Сумма цифр: ${searchDigit(a,  if (condition==1) ::condition1 else if (condition==2) ::condition2 else ::condition3, ::sumDigit)}")
-            2 -> println("Минимальная цифра: ${searchDigit(a,  if (condition==1) ::condition1 else if (condition==2) ::condition2 else ::condition3, ::minDigit)}")
-            3 -> println("Максимальная цифра: ${searchDigit(a,  if (condition==1) ::condition1 else if (condition==2) ::condition2 else ::condition3, ::maxDigit)}")
-            4 -> println("Произведение цифр: ${searchDigit(a,  if (condition==1) ::condition1 else if (condition==2) ::condition2 else ::condition3, ::proizDigit)}")
-        }
-    } catch (e: Exception) {
-        println("Условие не пройдено")
-    }
-}
+// В операторе "when" программа заходит в 4 альтернативу и вызывает функцию  searchDigit, которая в свою очередь
+// осуществляет выбор условия фильтрации с помощь тернарного оператора.
+// В нашем случае условие фильтрации - все цифры числа кратны 3.В функции condition3 идёт проверка каждой
+// цифры на кратность 3. В случае, если условие будет нарушено, программа выдаст исключение, которое обработается и
+// в консоль выведется "Условие на пройдено".
+// В нашей ситуации, условие не нарушается и searchDigit переводит на proizDigit, которая ищет произведение цифр
+// Результат поиска выводится на экран
