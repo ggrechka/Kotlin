@@ -273,3 +273,60 @@ import java.util.*
 // в консоль выведется "Условие на пройдено".
 // В нашей ситуации, условие не нарушается и searchDigit переводит на proizDigit, которая ищет произведение цифр
 // Результат поиска выводится на экран
+
+//7 задание
+
+
+//tailrec fun delWithout3(num: Int, inVal: Int = 1, i: Int = 2): Int =
+//    if (i <= num) {
+//        if (num % i == 0 && i % 3 != 0) {
+//            delWithout3(num, inVal + 1, i + 1)
+//        } else delWithout3(num, inVal, i + 1)
+//    } else inVal
+//
+//tailrec fun minNechetDigit(num: Int, min: Int = 11): Int = if (num != 0) {
+//    minNechetDigit(num / 10, if (num % 10 < min && ((num % 10) % 2 == 1)) num % 10 else min)
+//} else if (min == 11) throw Exception() else min
+//
+//tailrec fun sumDigit(num: Int, inVal: Int = 0): Int = if (num != 0) {
+//    sumDigit(num / 10, inVal + (num % 10))
+//} else inVal
+//
+//tailrec fun proizDigit(num: Int, inVal: Int = 1): Int = if (num != 0) {
+//    proizDigit(num / 10, inVal * (num % 10))
+//} else inVal
+//
+//tailrec fun nodTwoNumbers(num1: Int, num2: Int, nod: Int = (if (num1 > num2) num2 else num1)) : Int =
+//    when
+//    {
+//        (num1 == 0 || num2 == 0) -> -1
+//        (num1 % nod == 0 && num2 % nod == 0) -> nod
+//        else -> nodTwoNumbers(num1, num2, nod - 1)
+//    }
+//
+//
+//tailrec fun delDigit(num: Int, inVal: Int = 0, i: Int = 1): Int =
+//    if (i <= num) {
+//        if (num % i == 0 && nodTwoNumbers(i,sumDigit(num))==1 && nodTwoNumbers(i,proizDigit(num))!=1) {
+//            delDigit(num, inVal + i, i + 1)
+//        } else delDigit(num, inVal, i + 1)
+//    } else inVal
+//
+//
+//
+//fun main() {
+//    print("Введите число: ")
+//    val input = Scanner(System.`in`)
+//    val a = input.nextInt()
+//
+//    println("Количество делителей, не делящихся на 3: ${delWithout3(a)}")
+//    try {
+//        println("Минимальная нечётная цифра: ${minNechetDigit(a)}")
+//    } catch (e: Exception) {
+//        println("Нечётных цифр нет")
+//    }
+//    println("Сумма всех делителей числа, взаимно простых с суммой\n" +
+//            "цифр числа и не взаимно простых с произведением цифр числа: ${delDigit(a)}")
+//
+//}
+//
