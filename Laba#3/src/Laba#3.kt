@@ -86,6 +86,26 @@ fun checkElem(mas: IntArray, inVal: Int): String {
         return "равен глобальному минимуму"
     return "не равен глобальному минимуму"
 }
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.6  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.17  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+tailrec fun findNum(mas: IntArray, inVal: Int, j: Int = 0): Int =
+    if (j < mas.size) {
+        if (mas[j] == inVal)
+            j
+        else findNum(mas, inVal, j + 1)
+    } else inVal
+
+fun swapMinMax(mas: IntArray): IntArray {
+    val inMin = findNum(mas, minDigit1(mas))
+    val inMax = findNum(mas, maxDigit1(mas))
+    var a = 0
+    a = mas[inMax]
+    mas[inMax] = mas[inMin]
+    mas[inMin] = a
+    return mas
+}
 
 fun main() {
     val input = Scanner(System.`in`)
@@ -153,7 +173,15 @@ fun main() {
 //    printMass(mas)
 
     // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.5   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-    println("Введите индекс: ")
-    val index = input.nextInt()
-    println("Ваш индекс ${checkElem(mas, index)}")
+//    println("Введите индекс: ")
+//    val index = input.nextInt()
+//    println("Ваш индекс ${checkElem(mas, index)}")
+
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.6   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.17  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+    println("Ваш свапнутый массив:")
+    printMass(swapMinMax(mas))
+
 }
