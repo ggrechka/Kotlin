@@ -176,10 +176,28 @@ fun maxDigit2(mas: MutableList<Int>): Int = arrayOp2(mas, { max, x: Int -> if (x
 fun proizDigit2(mas: MutableList<Int>): Int = arrayOp2(mas, { pr, x: Int -> pr * x }, 1)
 
 
+//// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для шестого задания   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+fun readListFromFile(): MutableList<Int> {
+    val inputStream: InputStream = File("C:/Users/Grechka/Documents/Programs/Laba#3/src/massiv.txt").inputStream()
+    val reader = inputStream.bufferedReader()
+    var list1 = mutableListOf<Int>()
+    reader.forEachLine { list1.add(it.toInt()) }
+    return list1
+}
+
+fun chooseList(a: Int): () -> MutableList<Int> = {
+    when (a) {
+        1 -> readList()
+        else -> readListFromFile()
+    }
+}
+
+
 fun main() {
     val input = Scanner(System.`in`)
-    val mas = readMass()
-
+//    val mas = readMass()
+    val list1 = readList()
  //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для 1 части первого задания   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
 //    println(
@@ -332,6 +350,21 @@ fun main() {
 
 // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для 3 части пятого задания    -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
+//     println(
+//        "Выберите команду: \n" +
+//                "1.Поиск суммы элементов \n" +
+//                "2.Поиск минимального элемента \n" +
+//                "3.Поиск максимального элемента \n" +
+//                "4.Поиск произведения элементов"
+//    )
+//    when (input.nextInt()) {
+//        1 -> println("Сумма элементов: ${sumDigit2(mas)}")
+//        2 -> println("Минимальный элемент: ${minDigit2(mas)} ")
+//        3 -> println("Максимальный элемент: ${maxDigit2(mas)}")
+//        4 -> println("Произведение элементов: ${proizDigit2(mas)}")
+//    }
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для шестого задания    -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+//
      println(
         "Выберите команду: \n" +
                 "1.Поиск суммы элементов \n" +
@@ -340,11 +373,10 @@ fun main() {
                 "4.Поиск произведения элементов"
     )
     when (input.nextInt()) {
-        1 -> println("Сумма элементов: ${sumDigit2(mas)}")
-        2 -> println("Минимальный элемент: ${minDigit2(mas)} ")
-        3 -> println("Максимальный элемент: ${maxDigit2(mas)}")
-        4 -> println("Произведение элементов: ${proizDigit2(mas)}")
+        1 -> println("Сумма элементов: ${list1.sum()}")
+        2 -> println("Минимальный элемент: ${list1.minOrNull()} ")
+        3 -> println("Максимальный элемент: ${list1.maxOrNull()}")
+        4 -> println("Произведение элементов: ${list1.reduce { acc, i -> acc*i }}")
     }
-
 
 }
