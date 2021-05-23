@@ -133,6 +133,17 @@ tailrec fun allDel(mas: IntArray, inVal: IntArray, j: Int = 0): IntArray = if (j
     allDel(mas, ins, j + 1)
 } else inVal
 
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.53  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+tailrec fun genMas(mas: IntArray, sr: Float, i: Int = 0, mas2: IntArray = IntArray(0)):IntArray=
+
+    if (i < mas.size) {
+        val maxim = maxDigit1(mas)
+        if (mas[i] > sr && mas[i] < maxim) {
+            val temp = mas2 + mas[i]
+            genMas(mas, sr, i + 1, temp)
+        } else genMas(mas, sr, i + 1, mas2)
+    } else mas2
 
 fun main() {
     val input = Scanner(System.`in`)
@@ -241,13 +252,20 @@ fun main() {
 
     // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.47   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-    val mas = readMass()
-    var alldelit=allDel(mas,IntArray(0))
-    val numbers = alldelit.toSet()
-    val numbers2 = numbers.toIntArray()
+//    val mas = readMass()
+//    var alldelit=allDel(mas,IntArray(0))
+//    val numbers = alldelit.toSet()
+//    val numbers2 = numbers.toIntArray()
+//
+//    println("Неповторяющиеся делители для вашей последовательности:")
+//    printMass(numbers2.sortedArray())
 
-    println("Неповторяющиеся делители для вашей последовательности:")
-    printMass(numbers2.sortedArray())
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.53  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+    val sum = arrayOp(mas, { sum, x: Int -> sum + x }, 0)
+    val size = mas.size
+    val sr = sum.toFloat() / size.toFloat()
+    val mass=genMas(mas, sr)
+    printMass(mass)
 
 
 
