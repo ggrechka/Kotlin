@@ -106,6 +106,17 @@ fun swapMinMax(mas: IntArray): IntArray {
     mas[inMin] = a
     return mas
 }
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.19 -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.29 -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+fun checkMax(mas: IntArray, a: Int, b: Int): String {
+    val inMax = findNum(mas, maxDigit1(mas))
+    if (inMax in a..b)
+        return "входит в промежуток"
+    return "не входит в промежуток"
+}
+
 
 fun main() {
     val input = Scanner(System.`in`)
@@ -181,7 +192,21 @@ fun main() {
 
 // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.17  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-    println("Ваш свапнутый массив:")
-    printMass(swapMinMax(mas))
+//    println("Ваш свапнутый массив:")
+//    printMass(swapMinMax(mas))
+
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.19  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.26 -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+    val min1 = arrayOp(mas, { min, x: Int -> if (x < min) x else min }, 10000)
+    val min2 = arrayOp(mas, { min, x: Int -> if (x < min && x != min1) x else min }, 10000)
+    val inMin1 = findNum(mas, min1)
+    val inMin2 = findNum(mas, min2)
+    println(min1)
+    println(min2)
+    if (inMin1>inMin2) println("Количество элементов между первым и вторыми минимумом:${inMin1-inMin2-1}")
+    else println("Количество элементов между первым и вторыми минимумом:${inMin2-inMin1-1}")
+
 
 }
