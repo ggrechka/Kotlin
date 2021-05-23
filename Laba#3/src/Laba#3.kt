@@ -79,7 +79,13 @@ fun chooseMas(a: Int): () -> IntArray = {
         else -> readMassFromFile()
     }
 }
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.5  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
+fun checkElem(mas: IntArray, inVal: Int): String {
+    if (minDigit1(mas) == mas[inVal])
+        return "равен глобальному минимуму"
+    return "не равен глобальному минимуму"
+}
 
 fun main() {
     val input = Scanner(System.`in`)
@@ -145,4 +151,9 @@ fun main() {
 //    val func = chooseMas(input.nextInt())
 //    val mas = func()
 //    printMass(mas)
+
+    // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.5   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+    println("Введите индекс: ")
+    val index = input.nextInt()
+    println("Ваш индекс ${checkElem(mas, index)}")
 }
