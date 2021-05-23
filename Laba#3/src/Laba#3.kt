@@ -117,11 +117,26 @@ fun checkMax(mas: IntArray, a: Int, b: Int): String {
     return "не входит в промежуток"
 }
 
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.41,47   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+tailrec fun delDigit(num: Int, inVal: IntArray = IntArray(0), i: Int = 1): IntArray =
+    if (i <= num) {
+        if (num % i == 0) {
+            delDigit(num, inVal + i, i + 1)
+        } else delDigit(num, inVal, i + 1)
+    } else inVal
+
+tailrec fun allDel(mas: IntArray, inVal: IntArray, j: Int = 0): IntArray = if (j < mas.size) {
+    val ex = delDigit(mas[j])
+    var ins = inVal
+    ex.forEach { ins += it.toInt() }
+    allDel(mas, ins, j + 1)
+} else inVal
 
 
 fun main() {
     val input = Scanner(System.`in`)
-    val mas = readMass()
+//    val mas = readMass()
 
  //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для 1 части первого задания   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
@@ -210,11 +225,19 @@ fun main() {
 //    else println("Количество элементов между первым и вторыми минимумом:${inMin2-inMin1-1}")
 
 // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.29 -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-      println("Введите а: ")
-      val a = input.nextInt()
-      println("Введите b: ")
-      val b = input.nextInt()
-      println("Ваш максимум ${checkMax(mas, a,b)}")
+//      println("Введите а: ")
+//      val a = input.nextInt()
+//      println("Введите b: ")
+//      val b = input.nextInt()
+//      println("Ваш максимум ${checkMax(mas, a,b)}")
 
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.41   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+    val mas = readMass()
+    val sum = arrayOp(mas, { sum, x: Int -> abs(sum) + abs(x) }, 0)
+    val size = mas.size
+
+    println("Среднее арифметическое: ${sum.toFloat()/size.toFloat()}")
+//
 
 }
