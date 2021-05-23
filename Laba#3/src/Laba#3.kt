@@ -145,9 +145,40 @@ tailrec fun genMas(mas: IntArray, sr: Float, i: Int = 0, mas2: IntArray = IntArr
         } else genMas(mas, sr, i + 1, mas2)
     } else mas2
 
+//// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для пятого задания   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+// чтение листа с клавиатуры
+fun readList(): MutableList<Int> {
+    val input = Scanner(System.`in`)
+    print("Введите кол-во элементов: ")
+    val n = input.nextInt()
+    val mas = mutableListOf<Int>()
+    println("Введите элементы: ")
+    var i = 0
+    while (i < n) {
+        mas.add(input.nextInt())
+        i++
+    }
+    return mas
+}
+
+
+tailrec fun arrayOp2(mas: MutableList<Int>, f: (Int, Int) -> Int, inVal: Int, i: Int = 0): Int =
+    if (i < mas.size) {
+        val a = f(inVal, mas[i])
+        arrayOp2(mas, f, a, i + 1)
+    } else inVal
+
+
+fun sumDigit2(mas: MutableList<Int>): Int = arrayOp2(mas, { sum, x: Int -> sum + x }, 0)
+fun minDigit2(mas: MutableList<Int>): Int = arrayOp2(mas, { min, x: Int -> if (x < min) x else min }, mas[0])
+fun maxDigit2(mas: MutableList<Int>): Int = arrayOp2(mas, { max, x: Int -> if (x > max) x else max }, mas[0])
+fun proizDigit2(mas: MutableList<Int>): Int = arrayOp2(mas, { pr, x: Int -> pr * x }, 1)
+
+
 fun main() {
     val input = Scanner(System.`in`)
-//    val mas = readMass()
+    val mas = readMass()
 
  //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для 1 части первого задания   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
@@ -261,11 +292,27 @@ fun main() {
 //    printMass(numbers2.sortedArray())
 
 // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.53  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-    val sum = arrayOp(mas, { sum, x: Int -> sum + x }, 0)
-    val size = mas.size
-    val sr = sum.toFloat() / size.toFloat()
-    val mass=genMas(mas, sr)
-    printMass(mass)
+//    val sum = arrayOp(mas, { sum, x: Int -> sum + x }, 0)
+//    val size = mas.size
+//    val sr = sum.toFloat() / size.toFloat()
+//    val mass=genMas(mas, sr)
+//    printMass(mass)
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для 1 части пятого задания   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+    println(
+        "Выберите команду: \n" +
+                "1.Поиск суммы элементов \n" +
+                "2.Поиск минимального элемента \n" +
+                "3.Поиск максимального элемента \n" +
+                "4.Поиск произведения элементов"
+    )
+    when (input.nextInt()) {
+        1 -> println("Сумма элементов: ${arrayOp2(mas, ::sumDigit,0)}")
+        2 -> println("Минимальный элемент: ${arrayOp2(mas, ::minDigit,mas[0])}")
+        3 -> println("Максимальный элемент: ${arrayOp2(mas, ::maxDigit,mas[0)}")
+        4 -> println("Произведение элементов: ${arrayOp2(mas, ::proizDigit,1)}")
+    }
+}
 
 
 
