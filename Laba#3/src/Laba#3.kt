@@ -118,6 +118,7 @@ fun checkMax(mas: IntArray, a: Int, b: Int): String {
 }
 
 
+
 fun main() {
     val input = Scanner(System.`in`)
     val mas = readMass()
@@ -199,14 +200,21 @@ fun main() {
 
 // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.26 -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-    val min1 = arrayOp(mas, { min, x: Int -> if (x < min) x else min }, 10000)
-    val min2 = arrayOp(mas, { min, x: Int -> if (x < min && x != min1) x else min }, 10000)
-    val inMin1 = findNum(mas, min1)
-    val inMin2 = findNum(mas, min2)
-    println(min1)
-    println(min2)
-    if (inMin1>inMin2) println("Количество элементов между первым и вторыми минимумом:${inMin1-inMin2-1}")
-    else println("Количество элементов между первым и вторыми минимумом:${inMin2-inMin1-1}")
+//    val min1 = arrayOp(mas, { min, x: Int -> if (x < min) x else min }, 10000)
+//    val min2 = arrayOp(mas, { min, x: Int -> if (x < min && x != min1) x else min }, 10000)
+//    val inMin1 = findNum(mas, min1)
+//    val inMin2 = findNum(mas, min2)
+//    println(min1)
+//    println(min2)
+//    if (inMin1>inMin2) println("Количество элементов между первым и вторыми минимумом:${inMin1-inMin2-1}")
+//    else println("Количество элементов между первым и вторыми минимумом:${inMin2-inMin1-1}")
+
+// -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   для четвёртого задания.29 -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+      println("Введите а: ")
+      val a = input.nextInt()
+      println("Введите b: ")
+      val b = input.nextInt()
+      println("Ваш максимум ${checkMax(mas, a,b)}")
 
 
 }
