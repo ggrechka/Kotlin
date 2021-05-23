@@ -233,11 +233,22 @@ fun main() {
 
 // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.41   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-    val mas = readMass()
-    val sum = arrayOp(mas, { sum, x: Int -> abs(sum) + abs(x) }, 0)
-    val size = mas.size
-
-    println("Среднее арифметическое: ${sum.toFloat()/size.toFloat()}")
+//    val mas = readMass()
+//    val sum = arrayOp(mas, { sum, x: Int -> abs(sum) + abs(x) }, 0)
+//    val size = mas.size
 //
+//    println("Среднее арифметическое: ${sum.toFloat()/size.toFloat()}")
+
+    // -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*   четвёртое задание.47   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+    val mas = readMass()
+    var alldelit=allDel(mas,IntArray(0))
+    val numbers = alldelit.toSet()
+    val numbers2 = numbers.toIntArray()
+
+    println("Неповторяющиеся делители для вашей последовательности:")
+    printMass(numbers2.sortedArray())
+
+
 
 }
