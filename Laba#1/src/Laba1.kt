@@ -340,5 +340,5 @@ fun main() {
     val input = Scanner(System.`in`)
     println("Введите число:")
     val a = input.nextInt()
-    println("Решение равно: ${solution(2)}")
+    println("Решение равно: ${solution(a)}")
 }
